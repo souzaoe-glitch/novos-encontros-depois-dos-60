@@ -25,7 +25,6 @@ export default function Identification() {
                 </span>
               </div>
             </div>
-            <p className="mt-8 text-sm text-muted">Imagem ilustrativa.</p>
           </div>
         </Reveal>
 

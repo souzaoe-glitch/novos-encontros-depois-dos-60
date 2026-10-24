@@ -81,8 +81,7 @@ export default function Footer() {
           </nav>
         </div>
         <div className="mt-8 space-y-2 text-[0.95rem] text-ivory/70">
-          <p>{sellerLine || `${siteConfig.product.name} · Material educativo digital.`}</p>
-          <p>Fotos ilustrativas de pessoas fictícias. Exemplos de conversa não são depoimentos.</p>
+          <p>{sellerLine || `${siteConfig.product.name} · E-book digital.`}</p>
           <p>Este site não é afiliado ao WhatsApp, Facebook ou Instagram.</p>
           <p>© {new Date().getFullYear()} {siteConfig.product.name}. Todos os direitos reservados.</p>
         </div>

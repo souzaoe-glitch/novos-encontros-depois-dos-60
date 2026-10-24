@@ -71,7 +71,7 @@ export default function Offer() {
                 <div className="flex w-full flex-col items-center lg:sticky lg:top-28">
                   <BookMockup />
                   <p className="mt-8 max-w-xs text-center text-[0.95rem] text-muted">
-                    Produto digital em PDF. A apresentação da capa é ilustrativa; não há envio de livro físico.
+                    E-book digital em PDF (30 páginas). Acesso no celular, tablet ou computador.
                   </p>
                 </div>
               </div>

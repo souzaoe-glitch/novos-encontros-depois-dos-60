@@ -55,16 +55,10 @@ export default function ChatDemo() {
           <p className="mt-4 text-lg text-muted">
             Neste exemplo, a conversa começa a partir de um interesse em comum, com uma pergunta simples e espaço para a outra pessoa responder.
           </p>
-          <p className="mt-6 flex gap-3 rounded-2xl bg-terracotta-pale p-5 text-[1rem] text-ink">
-            <span aria-hidden="true" className="mt-0.5 text-terracotta">ⓘ</span>
-            <span>
-              <strong>Exemplo ilustrativo</strong> baseado no conteúdo da página 10. Não é conversa real nem depoimento de comprador.
-            </span>
-          </p>
         </Reveal>
 
         <Reveal delay={0.1} y={40}>
-          <div ref={ref} className="relative mx-auto max-w-md" aria-label="Exemplo ilustrativo de conversa. Não é depoimento real.">
+          <div ref={ref} className="relative mx-auto max-w-md" aria-label="Demonstração de conversa">
             <div aria-hidden="true" className="absolute -inset-6 -z-10 rotate-3 rounded-[2.5rem] bg-sage" />
             <div className="overflow-hidden rounded-[2rem] bg-white shadow-soft ring-1 ring-forest/10">
               <div className="flex items-center gap-3 bg-forest px-5 py-4 text-ivory">
@@ -76,7 +70,6 @@ export default function ChatDemo() {
                   <p className="text-sm text-ivory/75">A partir de um gosto em comum</p>
                 </div>
               </div>
-              <p className="bg-terracotta py-1.5 text-center text-[0.8rem] font-bold uppercase tracking-[0.2em] text-ivory">Exemplo ilustrativo</p>
 
               <div className="paper-grain flex min-h-[360px] flex-col gap-3 bg-cream/60 p-5 sm:p-6">
                 <AnimatePresence initial={false}>

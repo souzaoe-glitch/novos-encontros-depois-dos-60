@@ -122,7 +122,6 @@ export default function Hero() {
               </p>
             </div>
           </motion.div>
-          <p className="mt-3 text-right text-sm text-muted sm:mt-12">Imagem ilustrativa.</p>
         </motion.div>
       </div>
     </section>
