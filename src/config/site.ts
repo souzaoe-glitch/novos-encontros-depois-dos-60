@@ -26,10 +26,8 @@ export const siteConfig = {
   // CHECKOUT
   // Cole aqui o link HTTPS da página de pagamento (Kirvano, Hotmart etc.).
   // Todos os botões de compra usam este único endereço.
-  // Enquanto estiver vazio, o botão mostra:
-  // "As vendas ainda não estão disponíveis. Volte em breve."
   // ----------------------------------------------------------
-  checkoutUrl: '',
+  checkoutUrl: 'https://pay.kirvano.com/a583fe55-bca8-49f1-869c-164d5dc97738',
 
   // ----------------------------------------------------------
   // ENTREGA

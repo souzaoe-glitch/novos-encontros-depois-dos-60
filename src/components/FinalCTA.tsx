@@ -1,5 +1,6 @@
 import Reveal from './Reveal';
 import { LeafMark } from './Header';
+import CheckoutButton from './CheckoutButton';
 import { formatPrice } from '@/config/site';
 
 export default function FinalCTA() {
@@ -19,9 +20,9 @@ export default function FinalCTA() {
             Não é preciso decidir tudo hoje. Pequenos passos, dados no seu ritmo, já contam. Leve um guia para consultar enquanto descobre o que deseja viver daqui para a frente.
           </p>
           <div className="mt-10 flex flex-col items-center gap-4">
-            <a href="#oferta" className="btn-cream w-full sm:w-auto">
-              Quero conhecer o guia completo <span aria-hidden="true">→</span>
-            </a>
+            <CheckoutButton className="btn-cream w-full sm:w-auto">
+              Quero meu e-book por {formatPrice()} <span aria-hidden="true">→</span>
+            </CheckoutButton>
             <p className="text-ivory/75">E-book digital · 30 páginas · {formatPrice()} · Pagamento único</p>
           </div>
         </Reveal>
