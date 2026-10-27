@@ -17,12 +17,12 @@ export default function CheckoutButton({ className = 'btn-primary w-full sm:w-au
   const { notify } = useToast();
 
   function handleClick() {
+    trackInitiateCheckout();
     const url = getCheckoutUrl();
     if (!url) {
       notify('As vendas ainda não estão disponíveis. Volte em breve.');
       return;
     }
-    trackInitiateCheckout();
     window.location.assign(url);
   }
 

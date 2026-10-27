@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useState } from 'react';
 import Reveal from './Reveal';
 import { faq } from '@/content/content';
+import { trackFaqOpen } from './FacebookPixel';
 
 export default function FAQ() {
   const [open, setOpen] = useState<number | null>(null);
@@ -31,7 +32,10 @@ export default function FAQ() {
                     id={`${id}-btn`}
                     aria-expanded={isOpen}
                     aria-controls={`${id}-panel`}
-                    onClick={() => setOpen(isOpen ? null : i)}
+                    onClick={() => {
+                      if (!isOpen) trackFaqOpen(item.q, i);
+                      setOpen(isOpen ? null : i);
+                    }}
                     className="group flex min-h-[64px] w-full items-center justify-between gap-5 py-5 text-left font-sans text-[1.08rem] font-bold text-ink transition-colors hover:text-forest sm:text-xl"
                   >
                     <span>{item.q}</span>

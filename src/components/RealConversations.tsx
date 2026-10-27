@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useCallback, useRef, useState } from 'react';
 import Reveal from './Reveal';
 import Modal, { CloseButton, type ModalHandle } from './Modal';
+import { trackConversationInteraction, trackCtaScrollToOffer } from './FacebookPixel';
 
 type TranscriptLine = {
   sender: string;
@@ -507,17 +508,33 @@ export default function RealConversations() {
   const touchEndX = useRef<number | null>(null);
 
   const toggleTranscript = (id: string) => {
-    setOpenTranscripts((prev) => ({ ...prev, [id]: !prev[id] }));
+    setOpenTranscripts((prev) => {
+      const nextOpen = !prev[id];
+      if (nextOpen) {
+        const found = conversations.find((c) => c.id === id);
+        if (found) trackConversationInteraction('transcript', found.contact);
+      }
+      return { ...prev, [id]: nextOpen };
+    });
   };
 
   const openZoom = (idx: number) => {
     setZoomIndex(idx);
     setZoomedIn(false);
     modalRef.current?.open();
+    if (conversations[idx]) {
+      trackConversationInteraction('zoom', conversations[idx].contact);
+    }
   };
 
   const goSlide = useCallback((dir: number) => {
-    setActiveSlide((prev) => (prev + dir + conversations.length) % conversations.length);
+    setActiveSlide((prev) => {
+      const next = (prev + dir + conversations.length) % conversations.length;
+      if (conversations[next]) {
+        trackConversationInteraction('carousel', conversations[next].contact);
+      }
+      return next;
+    });
   }, []);
 
   const goZoom = useCallback((dir: number) => {
@@ -665,7 +682,7 @@ export default function RealConversations() {
             Conheça as orientações do guia para iniciar conversas e se abrir a novos encontros no seu ritmo.
           </p>
           <div className="mt-7 flex justify-center">
-            <a href="#oferta" className="btn-cream w-full sm:w-auto">
+            <a href="#oferta" onClick={() => trackCtaScrollToOffer('conversas_reais')} className="btn-cream w-full sm:w-auto">
               Conhecer o e-book — R$ 19,90 <span aria-hidden="true">→</span>
             </a>
           </div>

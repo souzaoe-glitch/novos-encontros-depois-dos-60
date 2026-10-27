@@ -5,6 +5,7 @@ import { Brand } from './Header';
 import Modal, { CloseButton, type ModalHandle } from './Modal';
 import { siteConfig, getWhatsappLink } from '@/config/site';
 import { legal } from '@/content/content';
+import { trackContactClick } from './FacebookPixel';
 
 type Kind = 'support' | 'terms' | 'privacy';
 const titles: Record<Kind, string> = { support: 'Atendimento', terms: 'Termos de compra', privacy: 'Privacidade' };
@@ -35,14 +36,24 @@ function SupportInfo() {
       {siteConfig.supportEmail && (
         <p>
           E-mail de atendimento:{' '}
-          <a className="font-bold text-forest underline underline-offset-4" href={`mailto:${siteConfig.supportEmail}`}>
+          <a
+            className="font-bold text-forest underline underline-offset-4"
+            href={`mailto:${siteConfig.supportEmail}`}
+            onClick={() => trackContactClick('email')}
+          >
             {siteConfig.supportEmail}
           </a>
         </p>
       )}
       {wa && (
         <p>
-          <a className="font-bold text-forest underline underline-offset-4" href={wa} target="_blank" rel="noopener noreferrer">
+          <a
+            className="font-bold text-forest underline underline-offset-4"
+            href={wa}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => trackContactClick('whatsapp')}
+          >
             Falar com o atendimento pelo WhatsApp
           </a>
         </p>

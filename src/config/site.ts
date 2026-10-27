@@ -56,14 +56,10 @@ export const siteConfig = {
   siteUrl: '',
 
   // ----------------------------------------------------------
-  // FACEBOOK / META PIXEL
-  // Deixe vazio para não carregar nenhum rastreamento.
-  // Ao preencher, o site passa a enviar PageView e InitiateCheckout
-  // (este último só quando há checkout válido e a pessoa clica em comprar).
-  // Purchase NÃO é disparado aqui: depende da compra confirmada na plataforma.
-  // Atualize o texto de Privacidade (src/content/content.ts → legal.privacy) antes de ativar.
+  // FACEBOOK / META PIXEL + API DE CONVERSÕES (CAPI)
+  // Pixel ID configurado e ativo no navegador + servidor (/api/meta-capi).
   // ----------------------------------------------------------
-  facebookPixelId: '',
+  facebookPixelId: '1115403534180898',
 
   // ----------------------------------------------------------
   // DEPOIMENTOS
@@ -85,13 +81,42 @@ export function formatPrice(value: number = siteConfig.product.price): string {
   return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 }
 
-/** Aceita apenas URL HTTPS válida e sem credenciais. Retorna '' se inválida. */
+/**
+ * Aceita apenas URL HTTPS válida e sem credenciais. Retorna '' se inválida.
+ * No navegador, repassa automaticamente UTMs, fbclid, src e sck para o checkout.
+ */
 export function getCheckoutUrl(): string {
   const raw = (siteConfig.checkoutUrl || '').trim();
   if (!raw) return '';
   try {
     const u = new URL(raw);
     if (u.protocol !== 'https:' || u.username || u.password) return '';
+    if (typeof window !== 'undefined') {
+      const currentParams = new URLSearchParams(window.location.search);
+      let storedParams: Record<string, string> = {};
+      try {
+        const rawStored = sessionStorage.getItem('ne60_tracking_params');
+        if (rawStored) storedParams = JSON.parse(rawStored);
+      } catch {
+        // ignore storage errors
+      }
+      const keysToForward = [
+        'utm_source',
+        'utm_medium',
+        'utm_campaign',
+        'utm_content',
+        'utm_term',
+        'fbclid',
+        'src',
+        'sck',
+      ];
+      for (const key of keysToForward) {
+        const val = currentParams.get(key) || storedParams[key];
+        if (val && !u.searchParams.has(key)) {
+          u.searchParams.set(key, val);
+        }
+      }
+    }
     return u.href;
   } catch {
     return '';
