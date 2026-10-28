@@ -5,7 +5,8 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useCallback, useRef, useState } from 'react';
 import Reveal from './Reveal';
 import Modal, { CloseButton, type ModalHandle } from './Modal';
-import { trackConversationInteraction, trackCtaScrollToOffer } from './FacebookPixel';
+import CheckoutButton from './CheckoutButton';
+import { trackConversationInteraction } from './FacebookPixel';
 
 type TranscriptLine = {
   sender: string;
@@ -682,9 +683,9 @@ export default function RealConversations() {
             Conheça as orientações do guia para iniciar conversas e se abrir a novos encontros no seu ritmo.
           </p>
           <div className="mt-7 flex justify-center">
-            <a href="#oferta" onClick={() => trackCtaScrollToOffer('conversas_reais')} className="btn-cream w-full sm:w-auto">
+            <CheckoutButton className="btn-cream w-full sm:w-auto">
               Conhecer o e-book — R$ 19,90 <span aria-hidden="true">→</span>
-            </a>
+            </CheckoutButton>
           </div>
         </Reveal>
       </div>

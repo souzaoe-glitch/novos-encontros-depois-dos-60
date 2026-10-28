@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 import { formatPrice } from '@/config/site';
-import { trackCtaScrollToOffer } from './FacebookPixel';
+import CheckoutButton from './CheckoutButton';
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -70,9 +70,9 @@ export default function Hero() {
             </p>
 
             <div className="mt-9 flex flex-col items-start gap-4">
-              <a href="#oferta" onClick={() => trackCtaScrollToOffer('hero_abertura')} className="btn-primary w-full sm:w-auto">
+              <CheckoutButton className="btn-primary w-full sm:w-auto">
                 Quero meu e-book por {formatPrice()} <span aria-hidden="true">→</span>
-              </a>
+              </CheckoutButton>
               <p className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[0.98rem] text-muted">
                 <span>Pagamento único</span>
                 <span aria-hidden="true" className="h-1 w-1 rounded-full bg-terracotta" />

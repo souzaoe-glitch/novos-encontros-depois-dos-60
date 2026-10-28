@@ -4,8 +4,9 @@ import Image from 'next/image';
 import { useCallback, useRef, useState } from 'react';
 import Reveal from './Reveal';
 import Modal, { CloseButton, type ModalHandle } from './Modal';
+import CheckoutButton from './CheckoutButton';
 import { samples } from '@/content/content';
-import { trackSampleView, trackCtaScrollToOffer } from './FacebookPixel';
+import { trackSampleView } from './FacebookPixel';
 
 export default function Samples() {
   const modal = useRef<ModalHandle>(null);
@@ -81,9 +82,9 @@ export default function Samples() {
 
         <Reveal className="mt-14 flex flex-col items-start justify-between gap-5 border-t border-ivory/15 pt-8 sm:flex-row sm:items-center">
           <p className="text-lg text-ivory/85">Conteúdo prático, exemplos curtos e espaço para refletir.</p>
-          <a href="#oferta" onClick={() => trackCtaScrollToOffer('amostras_ebook')} className="btn-cream w-full sm:w-auto">
+          <CheckoutButton className="btn-cream w-full sm:w-auto">
             Quero ter o guia completo <span aria-hidden="true">→</span>
-          </a>
+          </CheckoutButton>
         </Reveal>
       </div>
 

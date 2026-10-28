@@ -3,7 +3,7 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { formatPrice } from '@/config/site';
-import { trackCtaScrollToOffer } from './FacebookPixel';
+import CheckoutButton from './CheckoutButton';
 
 /**
  * Barra fixa no celular. Aparece após o topo da página e some
@@ -52,13 +52,9 @@ export default function MobileStickyCTA() {
               <p className="text-sm text-muted">E-book completo · PDF</p>
               <p className="font-serif text-2xl font-semibold text-forest">{formatPrice()}</p>
             </div>
-            <a
-              href="#oferta"
-              onClick={() => trackCtaScrollToOffer('barra_fixa_celular')}
-              className="inline-flex min-h-[52px] items-center gap-2 rounded-full bg-forest px-6 font-bold text-ivory transition active:scale-95"
-            >
+            <CheckoutButton className="inline-flex min-h-[52px] items-center gap-2 rounded-full bg-forest px-6 font-bold text-ivory transition active:scale-95">
               Quero meu guia <span aria-hidden="true">→</span>
-            </a>
+            </CheckoutButton>
           </div>
         </motion.div>
       )}

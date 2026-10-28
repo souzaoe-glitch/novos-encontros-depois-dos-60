@@ -2,7 +2,7 @@
 
 import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
 import { useEffect, useState } from 'react';
-import { trackCtaScrollToOffer } from './FacebookPixel';
+import CheckoutButton from './CheckoutButton';
 
 export function LeafMark({ className = 'h-9 w-9' }: { className?: string }) {
   return (
@@ -102,13 +102,9 @@ export default function Header() {
           </nav>
           <div className="flex items-center gap-2 sm:gap-3">
             <FontSizeToggle />
-            <a
-              href="#oferta"
-              onClick={() => trackCtaScrollToOffer('header_topo')}
-              className="hidden min-h-[48px] items-center gap-2 rounded-full bg-forest px-6 font-bold text-ivory transition hover:-translate-y-0.5 hover:bg-forest-deep sm:inline-flex"
-            >
-              Ver oferta <span aria-hidden="true">↗</span>
-            </a>
+            <CheckoutButton className="hidden min-h-[48px] items-center gap-2 rounded-full bg-forest px-6 font-bold text-ivory transition hover:-translate-y-0.5 hover:bg-forest-deep sm:inline-flex">
+              Comprar agora <span aria-hidden="true">↗</span>
+            </CheckoutButton>
           </div>
         </div>
       </motion.header>
