@@ -7,8 +7,8 @@ import { siteConfig, getWhatsappLink } from '@/config/site';
 import { legal } from '@/content/content';
 import { trackContactClick } from './FacebookPixel';
 
-type Kind = 'support' | 'terms' | 'privacy';
-const titles: Record<Kind, string> = { support: 'Atendimento', terms: 'Termos de compra', privacy: 'Privacidade' };
+type Kind = 'terms' | 'privacy';
+const titles: Record<Kind, string> = { terms: 'Termos de compra', privacy: 'Privacidade' };
 
 function SellerInfo() {
   const lines = [
@@ -29,7 +29,7 @@ function SellerInfo() {
 function SupportInfo() {
   const wa = getWhatsappLink();
   if (!siteConfig.supportEmail && !wa) {
-    return <p>O canal de atendimento será informado junto às informações de compra quando as vendas forem abertas.</p>;
+    return null;
   }
   return (
     <div className="space-y-3">
@@ -64,7 +64,7 @@ function SupportInfo() {
 
 export default function Footer() {
   const modal = useRef<ModalHandle>(null);
-  const [kind, setKind] = useState<Kind>('support');
+  const [kind, setKind] = useState<Kind>('terms');
 
   const open = (k: Kind) => {
     setKind(k);
@@ -74,7 +74,7 @@ export default function Footer() {
   const sellerLine = [siteConfig.sellerName, siteConfig.sellerDocument, siteConfig.sellerAddress].filter(Boolean).join(' · ');
 
   return (
-    <footer className="bg-ink pb-32 pt-16 text-ivory/85 md:pb-14">
+    <footer id="site-footer" className="bg-ink pb-32 pt-16 text-ivory/85 md:pb-14">
       <div className="container-site">
         <div className="flex flex-col gap-8 border-b border-ivory/10 pb-10 md:flex-row md:items-center md:justify-between">
           <Brand light />
@@ -107,7 +107,6 @@ export default function Footer() {
             <CloseButton onClick={() => modal.current?.close()} label="Fechar janela" />
           </div>
           <div className="mt-6 space-y-4 text-[1.02rem] leading-relaxed">
-            {kind === 'support' && <SupportInfo />}
             {kind === 'terms' && (
               <>
                 {legal.terms.map((p) => (
