@@ -2,7 +2,7 @@
 
 import { getCheckoutUrl, formatPrice } from '@/config/site';
 import { useToast } from './Providers';
-import { trackInitiateCheckout } from './FacebookPixel';
+import { trackAddToCart } from './FacebookPixel';
 
 type Props = {
   className?: string;
@@ -11,18 +11,18 @@ type Props = {
 
 /**
  * Botão de compra. Usa o checkoutUrl de src/config/site.ts.
- * Sem URL válida: apenas mostra o aviso, sem enviar dados.
+ * Sem URL válida: apenas mostra o aviso, sem enviar dados nem eventos.
  */
 export default function CheckoutButton({ className = 'btn-primary w-full sm:w-auto', children }: Props) {
   const { notify } = useToast();
 
   function handleClick() {
-    trackInitiateCheckout();
     const url = getCheckoutUrl();
     if (!url) {
       notify('As vendas ainda não estão disponíveis. Volte em breve.');
       return;
     }
+    trackAddToCart();
     window.location.assign(url);
   }
 

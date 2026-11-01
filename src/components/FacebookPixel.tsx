@@ -168,10 +168,25 @@ export function trackMetaEvent(
   });
 }
 
-/** Dispara InitiateCheckout (Navegador + CAPI) quando a pessoa clica em comprar. */
-export function trackInitiateCheckout(source = 'botao_comprar') {
+const ADD_TO_CART_WINDOW_MS = 30 * 60 * 1000;
+const ADD_TO_CART_KEY = 'ne60_add_to_cart_ts';
+
+/**
+ * Dispara AddToCart (Navegador + CAPI, mesmo event_id) quando a pessoa clica em comprar.
+ * Limitado a 1 por visitante a cada 30 minutos, para cliques repetidos não inflarem a contagem.
+ * O InitiateCheckout e o Purchase ficam a cargo do Pixel da Kirvano, na página de pagamento.
+ */
+export function trackAddToCart(source = 'botao_comprar') {
+  if (typeof window === 'undefined') return;
+  try {
+    const last = Number(window.localStorage.getItem(ADD_TO_CART_KEY) || 0);
+    if (last && Date.now() - last < ADD_TO_CART_WINDOW_MS) return;
+    window.localStorage.setItem(ADD_TO_CART_KEY, String(Date.now()));
+  } catch {
+    // sem localStorage: segue e dispara
+  }
   trackMetaEvent(
-    'InitiateCheckout',
+    'AddToCart',
     {
       value: siteConfig.product.price,
       currency: 'BRL',
