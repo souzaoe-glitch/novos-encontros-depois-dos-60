@@ -7,8 +7,8 @@ import { siteConfig, getWhatsappLink } from '@/config/site';
 import { legal } from '@/content/content';
 import { trackContactClick } from './FacebookPixel';
 
-type Kind = 'terms' | 'privacy';
-const titles: Record<Kind, string> = { terms: 'Termos de compra', privacy: 'Privacidade' };
+type Kind = 'terms';
+const titles: Record<Kind, string> = { terms: 'Termos de compra' };
 
 function SellerInfo() {
   const lines = [
@@ -113,14 +113,6 @@ export default function Footer() {
                   <p key={p}>{p}</p>
                 ))}
                 <SupportInfo />
-              </>
-            )}
-            {kind === 'privacy' && (
-              <>
-                {legal.privacy.map((p) => (
-                  <p key={p}>{p}</p>
-                ))}
-                {siteConfig.privacyEmail ? <p>Contato para dúvidas sobre privacidade: {siteConfig.privacyEmail}</p> : <SupportInfo />}
               </>
             )}
             <SellerInfo />
