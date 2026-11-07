@@ -4,6 +4,7 @@ import './globals.css';
 import { siteConfig } from '@/config/site';
 import Providers from '@/components/Providers';
 import FacebookPixel from '@/components/FacebookPixel';
+import Clarity from '@/components/Clarity';
 
 const serif = Fraunces({
   subsets: ['latin'],
@@ -52,6 +53,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <Providers>{children}</Providers>
         <FacebookPixel />
+        <Clarity />
       </body>
     </html>
   );

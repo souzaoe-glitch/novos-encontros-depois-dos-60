@@ -60,6 +60,12 @@ export const siteConfig = {
   facebookPixelId: '1115403534180898',
 
   // ----------------------------------------------------------
+  // MICROSOFT CLARITY (mapas de calor e gravações de sessão)
+  // Deixe vazio para não carregar.
+  // ----------------------------------------------------------
+  clarityId: 'z9p7wqu23d',
+
+  // ----------------------------------------------------------
   // DEPOIMENTOS
   // Somente relatos REAIS, com autorização de uso. A seção fica oculta
   // enquanto não houver nenhum item com approved: true.
