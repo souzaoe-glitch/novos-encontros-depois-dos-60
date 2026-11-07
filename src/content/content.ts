@@ -179,7 +179,7 @@ export const legal = {
   ],
   privacy: siteConfig.facebookPixelId
     ? [
-        'Esta página não possui formulário nem conta de usuário. Para medir o desempenho de anúncios, utilizamos o Meta Pixel, que pode registrar visitas à página e cliques no botão de compra. Também usamos o Microsoft Clarity, que gera mapas de calor e gravações anônimas de navegação para melhorar a página.',
+        'Esta página não possui formulário nem conta de usuário. Para medir o desempenho de anúncios, utilizamos o Meta Pixel, que pode registrar visitas à página e cliques no botão de compra.',
         'Ao acessar um site, o navegador e a hospedagem podem processar informações técnicas necessárias à conexão, como endereço IP e dados de navegação.',
         'Se você comprar ou entrar em contato, os dados fornecidos serão tratados pelos serviços de pagamento ou atendimento utilizados. Consulte também as políticas desses serviços.',
       ]
